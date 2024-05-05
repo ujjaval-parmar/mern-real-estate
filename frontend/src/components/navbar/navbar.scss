@@ -1,0 +1,207 @@
+@import '../../responsive.scss';
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+
+    a {
+        transition: all 0.4s ease;
+
+        @include sm{
+            display: none;
+        }
+
+        &:hover {
+            scale: 1.05;
+        }
+    }
+
+    .left {
+        flex: 3;
+        display: flex;
+        align-items: center;
+        gap: 50px;
+
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+
+            img {
+                width: 28px;
+            }
+
+            span{
+                @include md{
+                    display: none;
+                }
+
+                @include sm{
+                    display: initial;
+                }
+            }
+        }
+
+    }
+
+    .right {
+        flex: 2;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        background-color: #fcf5f3;
+        height: 100%;
+
+        .menu{
+            display: none;
+        }
+
+        .user{
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+
+            img{
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-right: 20px;
+            }
+
+            span{
+                @include sm{
+                    display: none;
+                }
+            }
+
+            .profileBtn{
+                padding: 12px 24px;
+                background: #fece51;
+                cursor: pointer;
+                border: none;
+                position: relative;
+
+                .notification{
+                    width: 20px;
+                    height: 20px;
+                    color: white;
+                    background: rgb(118, 2, 2);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: absolute;
+                    top: -4px;
+                    right: -4px;
+                }
+
+            }
+
+        }
+
+        @include md{
+            background-color: transparent;
+        }
+        
+
+        a {
+            padding: 12px 24px;
+            margin: 20px;
+        }
+
+        .register {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fece51;
+
+            @include sm{
+                display: none;
+            }
+        }
+
+        .menuIcon{
+            display: none;
+
+            img{
+                width: 35px;
+                height: 36px;
+                cursor: pointer;
+            }
+
+        }
+
+        
+
+        
+        
+
+        @include sm{
+            .menuIcon{
+                display: initial;
+                z-index: 100;
+            }
+
+            .menu{
+                display: initial;
+                width: 0;
+                height: 100vh;
+                background: black;
+                color: white;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                // gap: 1rem 0;
+                // opacity: 0;
+                overflow: hidden;
+                position: absolute;
+                top: 0;
+                right: 0;
+                transition: width 0.8s;
+                
+                a{
+                    text-align: center;
+                    font-size: 1.3rem;
+                    width: 60vw;
+                    display: initial;
+                    opacity: 0;
+                    transition: opacity 0.5s;
+                }
+
+               
+                
+                
+                &.showNav{
+                    width: 50vw;
+                    // opacity: 1;
+                    
+                    a{
+                        transition: opacity 2s;
+                        opacity: 1;
+                    }
+
+                }
+    
+             
+    
+            }
+
+           
+        }
+
+       
+
+        
+
+
+    }
+
+
+}
