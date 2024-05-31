@@ -1,6 +1,12 @@
+import bcrypt from "bcryptjs"
+
+
 import UserModel from "../models/userModel.js";
 
 export const getUsers = async (req, res) => {
+
+    // console.log(req.cookies);
+    // console.log(req.userId);
 
     try {
         const response = await UserModel.find();
@@ -51,12 +57,14 @@ export const updateUser = async (req, res) => {
 
         //   console.log(req.body) 
 
+        const hasedPassword = await bcrypt.hash(req.body.password, 12);
 
-        const response = await UserModel.findByIdAndUpdate(req.params.id, req.body, {new: true});
+
+        const response = await UserModel.findByIdAndUpdate(req.params.id, {...req.body, password: hasedPassword }, {new: true});
 
         res.status(200).json({
             message: 'Update User Success!',
-            data: response
+            data: response 
         })
     } catch (error) {
         res.status(500).json({
@@ -81,7 +89,7 @@ export const deleteUser = async (req, res) => {
 
         const response = await UserModel.findByIdAndDelete(req.params.id);
 
-        res.status(200).json({
+        res.status(204).json({
             message: 'Deleting User Success!',
             data: response
         })

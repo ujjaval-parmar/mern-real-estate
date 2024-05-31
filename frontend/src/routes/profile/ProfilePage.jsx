@@ -1,8 +1,8 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import Chat from '../../components/chat/Chat'
 import List from '../../components/list/List'
 import './profilePage.scss'
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
 const ProfilePage = () => {
@@ -11,14 +11,40 @@ const ProfilePage = () => {
 
   const { currentUser, updateUser } = useContext(AuthContext);
 
+  const [userPosts, setUserPosts ] = useState([]);
 
-  const handleLogout = () => {
-    updateUser(null);
-    navigate('/');
+
+  useEffect(()=>{
+    const getUserPosts = async()=>{
+
+      const response = await fetch('http://localhost:5000/api/posts/user-posts',{
+        credentials: 'include',
+                "Access-Control-Allow-Origin": "*",
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+      });
+
+      const data = await response.json();
+
+      // console.log(data);
+      setUserPosts(data.data);
+
+      
+    }
+
+    getUserPosts();
+  }, [])
+
+
+  const handleLogout = async () => {
+    try {
+      await fetch('http://localhost:5000/api/auth/logout')
+      updateUser(null);
+      navigate('/');
+    } catch (err) {
+    }
   }
-
-  
-
 
   return (
 
@@ -43,15 +69,19 @@ const ProfilePage = () => {
 
           <div className="title">
             <h1>My List</h1>
-            <button>Create New Post</button>
+            <NavLink to='/add'>
+              <button>
+                Create New Post
+              </button>
+            </NavLink>
           </div>
-          <List />
+          {userPosts.length>0 && <List data={userPosts}/> }
 
 
-          <div className="title">
+          {/* <div className="title">
             <h1>Saved List</h1>
-          </div>
-          <List />
+          </div> */}
+          {/* <List /> */}
 
         </div>
 

@@ -3,13 +3,13 @@ import Card from '../card/Card';
 
 import './list.scss'
 
-const data = listData;
+// const data = listData;
 
-const List = () => {
+const List = ({ data }) => {
   return (
     <div className='list'>
         {data.map(item=>{
-           return <Card key={item.id} item={item} />
+           return <Card key={item._id} item={item} />
         })}
     </div>
   )

@@ -5,7 +5,7 @@ import { useNavigate, useRouteError } from 'react-router-dom'
 const NotFound = () => {
 
   const navigate = useNavigate();
-  const error = useRouteError();
+  const error =  useRouteError();
 
   console.log(error.message);
 

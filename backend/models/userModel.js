@@ -14,12 +14,13 @@ const UserSchema = new mongoose.Schema({
     },
     avatar:{
         type: String,
-        required: true,
+        default:"https://avatars.githubusercontent.com/u/154329143?v=4"
         
     },
     password:{
         type: String,
-        required: true
+        required: true,
+        
     },
     createdAt:{
         type: Date,

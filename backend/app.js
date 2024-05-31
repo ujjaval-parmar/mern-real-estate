@@ -6,7 +6,6 @@ import cors from 'cors';
 import multer from 'multer';
 import postRouter from './routes/postRoute.js';
 import authRouter from './routes/AuthRoute.js';
-import verifyUser from './middlewares/varifyUser.js';
 import userRouter from './routes/userRoute.js';
 
 
@@ -19,6 +18,8 @@ app.use('/', express.static('public/images'));
 
 app.use(express.json());
 
+
+
 app.use(cors({
     origin: process.env.CLIENT_URL,
     credentials: true,
@@ -26,6 +27,14 @@ app.use(cors({
 
 }));
 
+
+app.use((req, res, next)=>{
+    res.setHeader('Access-Control-Allow-Credentials', true);
+
+    res.setHeader('Access-Control-Allow-Origin', process.env.CLIENT_URL);
+
+    next();
+})
 
 
 app.use(cookieParser());
@@ -39,14 +48,9 @@ mongoose.connect(process.env.DATABASE)
     .then(() => console.log('DB connected!'))
     .catch(err => console.log('DB connect Failed!: ', err));
 
-app.use('/test', (req, res)=>{
-     res.status(200).json({
-            message: 'Register User Failed!',
-            error: error.message
-        })
-    
-})
-app.use('/api/posts', verifyUser, postRouter);
+
+
+app.use('/api/posts', postRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
 

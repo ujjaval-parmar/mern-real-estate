@@ -1,14 +1,17 @@
 .newPostPage {
   height: 100%;
   display: flex;
-
+  
   .formContainer {
     flex: 3;
-    overflow: scroll;
-
+    // overflow: auto;
+    height: 100vh;
+    overflow-y: scroll;
+    padding: 50px 10px;
+    
     .wrapper {
       margin: 30px 50px 100px 0px;
-
+      
       form {
         display: flex;
         justify-content: space-between;
@@ -36,7 +39,7 @@
 
           &.description {
             width: 100%;
-            height: 320px;
+            height: 300px;
 
             .quill > .ql-container > .ql-editor{
               height: 200px;

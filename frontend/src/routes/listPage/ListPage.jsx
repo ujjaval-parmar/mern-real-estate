@@ -1,3 +1,4 @@
+import { useLoaderData } from 'react-router-dom';
 import Card from '../../components/card/Card';
 import Filter from '../../components/filter/Filter';
 import Map from '../../components/map/Map';
@@ -8,7 +9,9 @@ const data = listData;
 
 const ListPage = () => {
 
+  const data = useLoaderData();
 
+  console.log(data)
 
   return (
     <div className='listPage'>
@@ -19,7 +22,7 @@ const ListPage = () => {
           <Filter />
 
           {data.map(item=>{
-           return <Card key={item.id} item={item} />
+           return <Card key={item._id} item={item} />
           })}
 
         </div>

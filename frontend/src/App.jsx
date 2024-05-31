@@ -9,6 +9,8 @@ import ProfilePage from './routes/profile/ProfilePage';
 import Register from './routes/register/register';
 import Login from './routes/login/login';
 import ProfileUpdatePage from './routes/profileUpdatePage/profileUpdatePage';
+import NewPostPage from './routes/newPostPage/newPostPage';
+import { listPageLoder, singlePageLoader } from './lib/loaders';
 
 
 
@@ -23,11 +25,13 @@ const router = createBrowserRouter([
       },
       {
         path: '/list',
-        element: <ListPage />
+        element: <ListPage />,
+        loader: listPageLoder
       },
       {
         path: '/:id',
-        element: <SinglePage />
+        element: <SinglePage />,
+        loader: singlePageLoader,
       },
       {
         path: '/login',
@@ -51,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: '/profile/update',
         element: <ProfileUpdatePage />
+      },
+      {
+        path: '/add',
+        element: <NewPostPage />
       },
     ],
     errorElement: <NotFound />,

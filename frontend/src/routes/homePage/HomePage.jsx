@@ -1,5 +1,5 @@
 
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import SearchBar from '../../components/searchBar/SearchBar';
 import './homePage.scss';
 import { AuthContext, AuthProvider } from '../../context/AuthContext';
@@ -7,6 +7,37 @@ import { AuthContext, AuthProvider } from '../../context/AuthContext';
 const HomePage = () => {
 
     const { currentUser } = useContext(AuthContext);
+
+
+    useEffect(()=>{
+
+        
+
+        const getData = async()=>{
+            const response = await fetch("http://localhost:5000/api/user/", {
+                // credentials: true,
+                credentials: 'include',
+                "Access-Control-Allow-Origin": "*",
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            // console.log(response);
+
+            const data = await response.json(); 
+
+            // console.log(data);
+
+            
+
+
+        }
+
+        getData();
+    }, [])
+
+    // console.dir(document)
 
     // console.log(currentUser);
 

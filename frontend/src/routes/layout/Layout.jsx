@@ -9,12 +9,9 @@ const RequireAuth = () => {
 
   const {currentUser } = useContext(AuthContext);
 
-  if(!currentUser){
-    return <Navigate to='/login' />
-  }
 
   return (
-    currentUser && (<div className='layout'>
+    !currentUser ?  <Navigate to='/login' /> : (<div className='layout'>
 
       <header className='navBar'>
         <Navbar />

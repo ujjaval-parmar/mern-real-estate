@@ -1,14 +1,14 @@
 @import '../../responsive.scss';
 
-.searchBar{
+.searchBar {
 
-    .type{
+    .type {
 
-        @include sm{
+        @include sm {
             margin-bottom: 5px;
         }
 
-        button{
+        button {
             padding: 16px 36px;
             border: 1px solid #999;
             background: white;
@@ -16,22 +16,23 @@
             border-bottom: none;
             cursor: pointer;
 
-            &.active{
+
+            &.active {
                 background: black;
                 color: white;
             }
 
-            &:first-child{
+            &:first-child {
                 border-top-left-radius: 5px;
                 border-right: none;
 
-                @include sm{
+                @include sm {
                     border-bottom: 1px solid #999;
                 }
 
             }
 
-            &:last-child{
+            &:last-child {
                 border-top-right-radius: 5px;
                 border-left: none;
             }
@@ -40,65 +41,76 @@
 
     }
 
-    form{
+    form {
         border: 1px solid #999;
         display: flex;
         justify-content: space-between;
         height: 64px;
         gap: 5px;
 
-        @include sm{
+        @include sm {
             flex-direction: column;
             border: none;
         }
 
-        input{
+        input {
             border: none;
             padding: 0 10px;
             width: 200px;
 
-            @include lg{
+            @include lg {
                 padding: 0px 5px;
 
-                &:nth-child(2),&:nth-child(3){
+                &:nth-child(2),
+                &:nth-child(3) {
                     width: 140px;
                 }
             }
 
-            @include md{
-               
+            @include md {
+
                 width: 200px;
 
-                &:nth-child(2),&:nth-child(3){
+                &:nth-child(2),
+                &:nth-child(3) {
                     width: 200px;
                 }
             }
 
-            @include sm{
+            @include sm {
                 padding: 20px;
                 border-bottom: 1px solid #999;
                 width: auto;
 
-                &:nth-child(2),&:nth-child(3){
+                &:nth-child(2),
+                &:nth-child(3) {
                     width: auto;
                 }
             }
 
         }
 
-        button{
-            border: none;
-            background: #fece51;
+        a {
+
             flex: 1;
-            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fece51;
+            
+            button {
+                border: none;
+                cursor: pointer;
+                background: #fece51;
 
-            @include sm{
-                padding: 10px;
-            }
+                @include sm {
+                    padding: 10px;
+                }
 
-            img{
-                width: 24px;
-                height: 24px;
+                img {
+                    width: 24px;
+                    height: 24px;
+                }
             }
         }
 

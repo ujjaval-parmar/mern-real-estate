@@ -19,7 +19,10 @@ const PostSchema = new mongoose.Schema({
     images:{
         type: [String],
         required: true,
-        default: []
+        default: [ "https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "https://images.pexels.com/photos/1428348/pexels-photo-1428348.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "https://images.pexels.com/photos/2062426/pexels-photo-2062426.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "https://images.pexels.com/photos/2467285/pexels-photo-2467285.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"]
     },
     price:{
         type: Number,
@@ -41,29 +44,42 @@ const PostSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    latLong:{
-        type: [String],
+    latitude:{
+        type: String,
+        required: true
+    },
+    longitude:{
+        type: String,
         required: true
     },
     type:{
         type: String,
-        required: true
+        required: true,
+        enum: ['buy', 'rent'],
+        enum: {
+            values: ['buy', 'rent'],
+            message: 'Type is either: buy or rent',
+        },
     },
     property:{
         type: String,
-        required: true
+        required: true,
+        enum: {
+            values: ['apartment', 'house', 'condo', 'land'],
+            message: 'Type is either: apartment,  house, condo or land',
+        },
     },
     utilities:{
         type: String,
-        required: true
+        // required: true
     },
     pet:{
         type: String,
-        required: true
+        // required: true
     },
     income:{
         type: String,
-        required: true
+        // required: true
     },
     size:{
         type: Number,
@@ -71,15 +87,15 @@ const PostSchema = new mongoose.Schema({
     },
     school:{
         type: Number,
-        required: true
+        // required: true
     },
     hospital:{
         type: Number,
-        required: true
+        // required: true
     },
-    restarant:{
+    restaurant:{
         type: Number,
-        required: true
+        // required: true
     },
     createdAt:{
         type: Date,

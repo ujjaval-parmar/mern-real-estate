@@ -38,9 +38,10 @@ function Login() {
       const response = await fetch('http://localhost:5000/api/auth/login',{
         method: 'POST',
         body: JSON.stringify(body),
+        credentials: 'include',
+        "Access-Control-Allow-Origin": "*",
         headers: {
           'Content-Type': 'application/json',
-          credentials: 'include'
         }
       })
 
@@ -51,6 +52,7 @@ function Login() {
       if(!response.ok){
         throw new Error(data.error);
       }
+
 
       updateUser(data.user);
 

@@ -1,29 +1,16 @@
 import express from 'express';
-import PostModel from '../models/postModel.js';
+import { addPost, deletePost, getPost, getPosts, updatePost, verifyPostOnwer, getUserPosts } from '../controllers/postControllers.js';
+import { verifyUser } from '../middlewares/varifyUser.js';
 
 
 
 const postRouter = express.Router();
 
-postRouter.get('/get-posts', async (req, res) => {
-
-    
-
-    try {
-        const response = await PostModel.find();
-
-        res.status(200).json({
-            message: 'Get All Post Success!',
-            data: response
-        })
-    } catch (error) {
-        res.status(500).json({
-            message: 'Get All Post Failed!',
-            error: error.message
-        })
-    }
-
-
-})
+postRouter.get('/', getPosts);
+postRouter.get('/user-posts', verifyUser, getUserPosts);
+postRouter.post('/', verifyUser, addPost);
+postRouter.get('/:id', getPost);
+postRouter.patch('/:id', verifyUser, verifyPostOnwer, updatePost);
+postRouter.delete('/:id', verifyUser, verifyPostOnwer, deletePost);
 
 export default postRouter;
